@@ -14,7 +14,7 @@ export default function ReviewCard({
 }: {
   review: Review;
   variant: "left" | "right";
-  actionMenu: React.ReactNode | null;
+  actionMenu: React.ReactNode;
 }) {
   return (
     <div

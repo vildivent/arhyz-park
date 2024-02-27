@@ -7,7 +7,7 @@ import { type Review } from "../../types";
 import Card from "./components/Card";
 import Heading from "./components/Heading";
 
-export default function ReviewCard({
+export function ReviewCard({
   review,
   variant,
   actionMenu,
@@ -18,12 +18,15 @@ export default function ReviewCard({
 }) {
   return (
     <div
-      className={cn("flex gap-5", variant === "right" && "flex-row-reverse")}
+      className={cn(
+        "flex w-full gap-5",
+        variant === "right" && "flex-row-reverse",
+      )}
     >
       <UserAvatar
         src={review?.image}
         size="6rem"
-        sizes="12rem"
+        sizes="10rem"
         className="hidden md:block"
       />
       <Card>
@@ -36,9 +39,56 @@ export default function ReviewCard({
           />
           <DisplayName displayName={review.username} />
         </Heading>
-        <Expand square={700 * 164}>
+        <Expand square={700 * 173}>
           <Md className="gap-5">{review.text}</Md>
         </Expand>
+      </Card>
+    </div>
+  );
+}
+
+export function ReviewCardSkeleton({
+  variant,
+  actionMenu,
+}: {
+  variant: "left" | "right";
+  actionMenu?: boolean;
+}) {
+  return (
+    <div
+      className={cn(
+        "flex w-full gap-5",
+        variant === "right" && "flex-row-reverse",
+      )}
+    >
+      <UserAvatar size="6rem" className="hidden animate-pulse md:block" />
+      <Card>
+        <Heading
+          actionMenu={
+            actionMenu && (
+              <div className="h-10 w-24 shrink-0 animate-pulse rounded-full bg-primary-main" />
+            )
+          }
+        >
+          <UserAvatar size="3rem" className="animate-pulse md:hidden" />
+          <div className="h-[2ch] w-52 animate-pulse rounded-full bg-primary-main" />
+        </Heading>
+        <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-2">
+            <div className="h-[1ch] w-80 animate-pulse rounded-full bg-primary-main" />
+            <div className="h-[1ch] w-40 animate-pulse rounded-full bg-primary-main" />
+          </div>
+          <div className="flex flex-col gap-2">
+            <div className="h-[1ch] w-80 animate-pulse rounded-full bg-primary-main" />
+            <div className="h-[1ch] w-40 animate-pulse rounded-full bg-primary-main" />
+            <div className="h-[1ch] w-64 animate-pulse rounded-full bg-primary-main" />
+          </div>
+          <div className="flex flex-col gap-2">
+            <div className="h-[1ch] w-40 animate-pulse rounded-full bg-primary-main" />
+            <div className="h-[1ch] w-80 animate-pulse rounded-full bg-primary-main" />
+            <div className="h-[1ch] w-60 animate-pulse rounded-full bg-primary-main" />
+          </div>
+        </div>
       </Card>
     </div>
   );

@@ -39,7 +39,7 @@ export function ReviewCard({
           />
           <DisplayName displayName={review.username} />
         </Heading>
-        <Expand square={700 * 173}>
+        <Expand square={700 * 170}>
           <Md className="gap-5">{review.text}</Md>
         </Expand>
       </Card>
@@ -56,6 +56,7 @@ export function ReviewCardSkeleton({
 }) {
   return (
     <div
+      role="status"
       className={cn(
         "flex w-full gap-5",
         variant === "right" && "flex-row-reverse",
@@ -90,6 +91,7 @@ export function ReviewCardSkeleton({
           </div>
         </div>
       </Card>
+      <div className="sr-only">Loading...</div>
     </div>
   );
 }

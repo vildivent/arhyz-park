@@ -1,6 +1,6 @@
 import { type Metadata } from "next";
 import Image from "next/image";
-import ParalaxBg from "~/components/ParalaxBg";
+import ParalaxBg from "~/shared/ui/ParalaxBg";
 import ActionLink from "./components/ActionLink";
 import Advantages from "./widgets/Advantages";
 import GroupCards from "./widgets/GroupCards";

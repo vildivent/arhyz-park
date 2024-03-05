@@ -1,6 +1,9 @@
 import Image from "next/image";
 import Frame from "~/shared/ui/Frame";
 import Section from "~/shared/ui/Section";
+import SocialLink from "~/shared/ui/SocialLink";
+import ARASIALogo from "./components/ARASIALogo";
+import NRLILogo from "./components/NRLILogo";
 
 export default function Courses() {
   return (
@@ -23,6 +26,32 @@ export default function Courses() {
           </li>
           <li> Альянса инструкторов по снежным видам спорта (АСИ)</li>
         </ul>
+        <div className="flex gap-2 md:mx-5">
+          <SocialLink href="https://isia.ski">
+            <Image
+              className="shrink-0 select-none rounded-3xl object-cover"
+              src="/isia-logo.png"
+              alt="ISIA"
+              width={135}
+              height={108}
+            />
+          </SocialLink>
+          <SocialLink href="https://isiarussia.ru">
+            <NRLILogo />
+          </SocialLink>
+          <SocialLink href="https://arasia.ru">
+            <ARASIALogo />
+          </SocialLink>
+          <SocialLink href="https://rus-sia.ru">
+            <Image
+              className="shrink-0 select-none rounded-3xl object-cover"
+              src="/rus-sia-logo.jpg"
+              alt="RUS-SIA"
+              width={100}
+              height={100}
+            />
+          </SocialLink>
+        </div>
       </Frame>
       <Image
         className="shrink-0 select-none rounded-3xl object-cover shadow-lg"

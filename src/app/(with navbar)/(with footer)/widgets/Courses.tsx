@@ -26,7 +26,7 @@ export default function Courses() {
           </li>
           <li> Альянса инструкторов по снежным видам спорта (АСИ)</li>
         </ul>
-        <div className="flex gap-2 md:mx-5">
+        <div className="flex justify-between gap-2 md:mx-5">
           <SocialLink href="https://isia.ski">
             <Image
               className="shrink-0 select-none rounded-3xl object-cover"
@@ -35,12 +35,15 @@ export default function Courses() {
               width={135}
               height={108}
             />
+            <span className="sr-only">isia</span>
           </SocialLink>
           <SocialLink href="https://isiarussia.ru">
             <NRLILogo />
+            <span className="sr-only">isiarussia</span>
           </SocialLink>
           <SocialLink href="https://arasia.ru">
             <ARASIALogo />
+            <span className="sr-only">arasia</span>
           </SocialLink>
           <SocialLink href="https://rus-sia.ru">
             <Image
@@ -50,6 +53,7 @@ export default function Courses() {
               width={100}
               height={100}
             />
+            <span className="sr-only">rus-sia</span>
           </SocialLink>
         </div>
       </Frame>

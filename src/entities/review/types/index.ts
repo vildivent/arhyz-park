@@ -7,4 +7,5 @@ export type Review = {
   image: string | null;
   text: string;
   raiting: $Enums.ReviewRaiting;
+  checked?: boolean;
 };

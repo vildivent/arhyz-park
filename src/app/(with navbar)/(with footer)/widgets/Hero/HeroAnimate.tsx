@@ -19,7 +19,7 @@ export default function HeroAnimate({
   return (
     <motion.section ref={ref} className="relative w-full overflow-hidden">
       <motion.div style={{ scale }}>
-        <div className="relative h-dvh w-[calc(100%+4rem)] -translate-x-16 sm:w-full sm:translate-x-0">
+        <div className="relative h-svh w-[calc(100%+3rem)] -translate-x-12 sm:w-full sm:translate-x-0">
           {image}
         </div>
       </motion.div>

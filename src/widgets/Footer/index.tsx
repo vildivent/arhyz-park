@@ -1,11 +1,12 @@
 import Logo from "~/components/Logo";
-import { Link, TextLink } from "~/shared/ui/buttons";
+import RecordButton from "~/features/Instructor/RecordButton";
+import { TextLink } from "~/shared/ui/buttons";
 import ContactsGroup from "./components/ContactsGroup";
 import { navLinks } from "./data";
 
 export default function Footer() {
   return (
-    <footer className="gradient flex w-full flex-col items-center gap-5 border-t p-2 sm:p-5 lg:gap-10 xl:pt-10">
+    <footer className="gradient flex w-full flex-col items-center gap-5 overflow-x-hidden p-2 sm:p-5 lg:gap-10 xl:pt-10">
       <div className="flex flex-col items-center gap-5 lg:gap-10 xl:flex-row xl:gap-x-24">
         <Logo />
         <div className="flex flex-col-reverse gap-5 lg:flex-row lg:gap-10">
@@ -18,10 +19,13 @@ export default function Footer() {
           </div>
           <div className="flex flex-col items-center gap-2 lg:items-start">
             <TextLink
-              href="Тарифы_на_услуги_инструкторов_АрхызПарка_23_24.pdf"
+              href="/Тарифы_на_услуги_инструкторов_АрхызПарка_23_24.pdf"
               target="_blank"
             >
               Тарифы 2023-2024
+            </TextLink>
+            <TextLink href="/Договор-оферта_АрхызПарк.pdf" target="_blank">
+              Договор-оферта
             </TextLink>
             {/* <TextLink href="terms-of-servise">Условия использования</TextLink> */}
             <TextLink href="privacy-policy">
@@ -38,9 +42,9 @@ export default function Footer() {
                 telFormatted="+7 (952) 56-56-272"
               />
             </div>
-            <Link href="https://n1040847.yclients.com" target="_blank">
+            <RecordButton href="https://n1040847.yclients.com">
               Забронировать занятие
-            </Link>
+            </RecordButton>
           </div>
         </div>
       </div>

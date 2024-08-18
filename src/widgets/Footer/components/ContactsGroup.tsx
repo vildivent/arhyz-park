@@ -1,5 +1,5 @@
 import GradientTel from "~/components/GradientTel";
-import SocialLink from "~/components/SocialLink";
+import SocialLink from "~/shared/ui/SocialLink";
 import { TelegramIcon, WhatsappIcon } from "~/shared/ui/icons";
 import { telFormat } from "~/shared/utils/tel";
 

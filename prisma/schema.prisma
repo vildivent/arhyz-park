@@ -6,24 +6,12 @@ generator client {
 }
 
 datasource db {
-    provider = "sqlite"
+    provider = "postgresql"
     // NOTE: When using mysql or sqlserver, uncomment the @db.Text annotations in model Account below
     // Further reading:
     // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
     // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
     url      = env("DATABASE_URL")
-}
-
-model Post {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-
-    createdBy   User   @relation(fields: [createdById], references: [id])
-    createdById String
-
-    @@index([name])
 }
 
 // Necessary for Next auth
@@ -33,12 +21,12 @@ model Account {
     type              String
     provider          String
     providerAccountId String
-    refresh_token     String? // @db.Text
-    access_token      String? // @db.Text
+    refresh_token     String? @db.Text
+    access_token      String? @db.Text
     expires_at        Int?
     token_type        String?
     scope             String?
-    id_token          String? // @db.Text
+    id_token          String? @db.Text
     session_state     String?
     user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -53,21 +41,88 @@ model Session {
     user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
-model User {
-    id            String    @id @default(cuid())
-    name          String?
-    email         String?   @unique
-    emailVerified DateTime?
-    image         String?
-    accounts      Account[]
-    sessions      Session[]
-    posts         Post[]
-}
-
 model VerificationToken {
     identifier String
     token      String   @unique
     expires    DateTime
 
     @@unique([identifier, token])
+}
+
+model Image {
+    id                String       @id @default(cuid())
+    createdAt         DateTime     @default(now())
+    url               String
+    aspectRatio       Float
+    title             String?
+    createdBy         User?        @relation("createdBy", fields: [createdById], references: [id])
+    createdById       String?
+    instructors       Instructor[]
+    reviewsWithAvatar Review[]
+    usersWithAvatar   User[]       @relation("avatar")
+}
+
+model ImageToken {
+    id      String   @id @default(cuid())
+    expires DateTime
+    user    User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+    userId  String   @unique
+}
+
+model User {
+    id            String      @id @default(cuid())
+    createdAt     DateTime    @default(now())
+    role          Role        @default(guest)
+    name          String?
+    surname       String?
+    email         String?     @unique
+    tel           String?
+    registered    DateTime?
+    emailVerified DateTime?
+    image         String?
+    avatar        Image?      @relation("avatar", fields: [avatarId], references: [id])
+    avatarId      String?
+    imageToken    ImageToken?
+    accounts      Account[]
+    sessions      Session[]
+    reviews       Review[]
+    images        Image[]     @relation("createdBy")
+}
+
+model Review {
+    id          String        @id @default(cuid())
+    createdAt   DateTime      @default(now())
+    username    String
+    text        String        @db.Text
+    raiting     ReviewRaiting @default(neutral)
+    checked     Boolean       @default(false)
+    showDate    Boolean       @default(true)
+    image       String?
+    avatar      Image?        @relation(fields: [avatarId], references: [id])
+    avatarId    String?
+    createdBy   User?         @relation(fields: [createdById], references: [id])
+    createdById String?
+}
+
+model Instructor {
+    id          String   @id @default(cuid())
+    createdAt   DateTime @default(now())
+    name        String
+    surname     String
+    description String   @db.Text
+    link        String   @db.Text
+    image       Image?   @relation(fields: [imageId], references: [id])
+    imageId     String?
+}
+
+enum ReviewRaiting {
+    neutral
+    positive
+    negative
+}
+
+enum Role {
+    guest
+    user
+    admin
 }

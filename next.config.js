@@ -5,6 +5,18 @@
 await import("./src/env.js");
 
 /** @type {import("next").NextConfig} */
-const config = {};
+const config = {
+  images: {
+    remotePatterns: [
+      //   { hostname: env.FILE_UPLOADER_DOMAIN, protocol: "https" },
+      { hostname: "lh3.googleusercontent.com", protocol: "https" },
+      { hostname: "avatars.yandex.net", protocol: "https" },
+      { hostname: "localhost", protocol: "http" },
+    ],
+  },
+  experimental: {
+    scrollRestoration: true,
+  },
+};
 
 export default config;
